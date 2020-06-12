@@ -13,7 +13,9 @@ Please cite the paper in your publications if it helps your research:
       title = {Unsupervised Geometry-Aware Representation Learning for 3D  Human Pose Estimation},
       year = {2018}
     }
-    
+
+**Version 2.0 available** on a separate github repo: [NSD: Neural Scene Decomposition](https://github.com/hrhodin/NeuralSceneDecomposition). This new CVPR19 paper extends the ECCV18 method to work with full-frame input and multiple persons. It decomposes the image into foreground instances and background. Furthermore, it infers occlusion and depth through differentiable rendering.
+
 Features
 ===================
 Modern 3D human pose estimation techniques rely on deep  networks, which require large amounts of training data. In  this work, we propose to overcome this problem by learning  a geometry-aware body representation from multi-view images without 3D annotations. To this end, we use an encoder-decoder  that predicts an image from one viewpoint given an image  from another viewpoint. Because this representation encodes 3D geometry, using it in a semi-supervised setting makes it  easier to learn a mapping from it to 3D human pose. As  evidenced by our experiments, our approach significantly  outperforms fully-supervised methods given the same amount  of labeled data, and improves over other semi-supervised  methods while using as little as 1% of the labeled data.
@@ -33,6 +35,9 @@ For testing a pre-trained model only the following packages are required:
 * numpy
 * matplotlib
 * pickle
+* imageio
+
+Moreover you will need an X Windows System (e.g.,XQuartz for mac) to run the interactive demo.
 
 Test the pretrained model
 =======================
@@ -42,9 +47,9 @@ A pre-trained model can then be tested with
 python configs/test_encodeDecode.py
 ```
 
-It outputs synthesized views and 3D pose estimates with matplotlib. Different view angles can be explored interactively through slider input. It should look like this:
+It outputs synthesized views and 3D pose estimates with matplotlib. Note that this requires an X Window System when exectued on a remote server, e.g., ssh -Y name@server.com. Different view angles can be explored interactively through slider input. It should look like this:
 
-![NVS and pose viewer image](./example.png "NVS and pose viewer")
+![NVS and pose viewer image](./examples/example.png "NVS and pose viewer")
 
 Training Dependencies
 ======================
