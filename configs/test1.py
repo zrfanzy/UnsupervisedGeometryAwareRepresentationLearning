@@ -72,11 +72,7 @@ class IgniteTestNVS(train_encodeDecode.IgniteTrainNVS):
         def nextImage():
             nonlocal input_dict, label_dict
             input_dict, label_dict = next(data_iterator)
-            #input_dict['extrinsic_rot'] = torch.from_numpy(np.ones((2,3,3))).float().cuda()
-            #input_dict['extrinsic_rot_inv'] = torch.from_numpy(np.ones((2,3,3))).float().cuda()
-            input_dict['bg_crop'] = torch.from_numpy(np.ones(2,128,128,3)).float().cuda()
-            #print('size of---------------------')
-            #print(np.shape(input_dict['img_crop']))
+            print(np.shape(input_dict['extrinsic_rot_inv']))
             input_dict['external_rotation_global'] = torch.from_numpy(np.eye(3)).float().cuda()
         nextImage()
 
@@ -120,7 +116,6 @@ class IgniteTestNVS(train_encodeDecode.IgniteTrainNVS):
         ax_in_img = plt.axes([-0.16, 0.2, 0.7, 0.7])
         ax_in_img.axis('off')
         im_input = plt.imshow(tensor_to_img(input_dict['img_crop'][0]), animated=True)
-        print(tensor_to_img(tensor_to_img(input_dict['img_crop'][0])))
         ax_in_img.set_title("Input img")
         # output image
         ax_out_img = plt.axes([0.15, 0.2, 0.7, 0.7])
@@ -177,4 +172,4 @@ if __name__ == "__main__":
     config_dict_module = utils_io.loadModule("configs/config_test_encodeDecode.py")
     config_dict = config_dict_module.config_dict
     ignite = IgniteTestNVS()
-    ignite.run(config_dict_module.__file__, config_dict)
+ignite.run(config_dict_module.__file__, config_dict)
